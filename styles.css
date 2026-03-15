@@ -190,7 +190,7 @@ body::after {
   text-transform: uppercase;
   white-space: nowrap;
   background: linear-gradient(90deg, #ffffff 0%, #ffffff 25%, #7f7f7f 50%, #ffffff 75%, #ffffff 100%);
-  background-size: 200% auto;
+  background-size: 300% auto;
   background-position: 0% 50%;
   color: transparent;
   -webkit-background-clip: text;

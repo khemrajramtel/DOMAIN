@@ -687,6 +687,7 @@ body::after {
 .staff-name-row {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.4rem;
   flex-wrap: wrap;
 }

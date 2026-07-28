@@ -210,7 +210,7 @@ async function renderHome(container) {
           </div>
           <div class="stat-body">
             <span class="stat-value" id="s-boost">...</span>
-            <span class="stat-label">Boost Level</span>
+            <span class="stat-label">Server Boosts</span>
           </div>
         </div>
       </div>
@@ -222,7 +222,7 @@ async function renderHome(container) {
     const set = (id, val) => { const el = container.querySelector(id); if (el) el.textContent = val; };
     set('#s-members', stats.members.toLocaleString());
     set('#s-online', stats.online.toLocaleString());
-    set('#s-boost', `Level ${stats.boostLevel}`);
+    set('#s-boost', stats.boostCount !== undefined ? `${stats.boostCount} (Lvl ${stats.boostLevel})` : `Level ${stats.boostLevel}`);
   } catch (e) {
     console.error('Stats fetch failed', e);
   }
@@ -401,6 +401,7 @@ async function renderStaff(container) {
         <div class="card staff-card">
           <div class="staff-avatar-wrap">
             <img src="${m.avatar}" alt="${m.name}" class="staff-avatar" loading="lazy">
+            ${m.avatarDecoration ? `<img src="${m.avatarDecoration}" class="staff-avatar-decoration" alt="" loading="lazy">` : ''}
             <span class="staff-status-svg" title="${m.status}">${statusSVG(m.status)}</span>
           </div>
           <div class="staff-info">

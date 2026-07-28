@@ -352,10 +352,52 @@ async function renderStaff(container) {
   `;
 
   try {
-    const staff = await ApiService.getStaff();
+    const rawStaff = await ApiService.getStaff();
     const grid  = container.querySelector('#staff-grid');
-    if (staff.length > 0) {
-      grid.innerHTML = staff.map(m => `
+
+    const ROLE_MAP = {
+      "1476496400198926366": "Appeal Mod",
+      "1476303275337847038": "Ticket Mod",
+      "1502195809817726986": "Application Mod"
+    };
+
+    const staffMap = {};
+    const orderedStaff = [];
+
+    rawStaff.forEach(m => {
+      if (!staffMap[m.id]) {
+        const { roles: apiRoles, ...rest } = m;
+        staffMap[m.id] = { ...rest, roles: [], apiRoles: apiRoles || [] };
+        orderedStaff.push(staffMap[m.id]);
+      }
+
+      const target = staffMap[m.id];
+      const addRole = (rName, rColor) => {
+        const mappedName = ROLE_MAP[rName] || rName;
+        if (!target.roles.find(existing => existing.name === mappedName)) {
+          target.roles.push({ name: mappedName, color: rColor || '#7b61ff' });
+        }
+      };
+
+      if (m.role) {
+        const rawRoles = m.role.split(',').map(s => s.trim());
+        const rawColors = m.roleColor ? m.roleColor.split(',').map(s => s.trim()) : [];
+        rawRoles.forEach((r, idx) => {
+          addRole(r, rawColors[idx] || rawColors[0] || m.roleColor);
+        });
+      }
+
+      if (Array.isArray(target.apiRoles)) {
+        target.apiRoles.forEach(r => {
+          if (typeof r === 'string') addRole(r, '#7b61ff');
+          else if (r && r.name) addRole(r.name, r.color);
+          else if (r && r.id) addRole(r.id, r.color);
+        });
+      }
+    });
+
+    if (orderedStaff.length > 0) {
+      grid.innerHTML = orderedStaff.map(m => `
         <div class="card staff-card">
           <div class="staff-avatar-wrap">
             <img src="${m.avatar}" alt="${m.name}" class="staff-avatar" loading="lazy">
@@ -366,9 +408,13 @@ async function renderStaff(container) {
               <h3>${m.name}</h3>
             </div>
             <p class="staff-username">@${m.username}</p>
-            <span class="role-badge" style="background:${m.roleColor}18; color:${m.roleColor}; border-color:${m.roleColor}40;">
-              ${m.role}
-            </span>
+            <div class="staff-roles-wrap" style="display:flex; flex-direction:column; align-items:center; gap:6px; margin-top:8px;">
+              ${m.roles.map(r => `
+                <span class="role-badge" style="background:${r.color}18; color:${r.color}; border-color:${r.color}40;">
+                  ${r.name}
+                </span>
+              `).join('')}
+            </div>
           </div>
         </div>
       `).join('');

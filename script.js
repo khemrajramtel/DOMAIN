@@ -475,9 +475,9 @@ function renderNotFound(container) {
     <div class="not-found-wrap">
       <div class="not-found-code">404</div>
       <h2 style="font-size:1.5rem; font-weight:700; margin-bottom:0.5rem;">Page Not Found</h2>
-      <p style="color:var(--text-muted); max-width:380px; margin-bottom:2rem;">The coordinates you entered don't match any known sector. Return to base.</p>
+      <p style="color:var(--text-muted); max-width:380px; margin-bottom:2rem;">The coordinates you entered don't match any known sector. Return to Home.</p>
       <a href="/" class="btn btn-primary" data-link>
-        <i class="bi bi-arrow-left"></i> Return to Base
+        <i class="bi bi-arrow-left"></i> Return to Home
       </a>
     </div>
   `;

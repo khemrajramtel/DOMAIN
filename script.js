@@ -178,7 +178,7 @@ async function renderHome(container) {
           A chill, unrestricted Discord community built around gaming, memes, voice channels, and genuine connections. We're growing, so join early and help shape something great.
         </p>
         <div class="hero-actions">
-          <a href="https://discord.gg/2GZ84WyFJp" target="_blank" rel="noreferrer" class="btn btn-primary">
+          <a href="https://discord.gg/5JubVrSrsB" target="_blank" rel="noreferrer" class="btn btn-primary">
             <i class="bi bi-discord"></i> Join Discord
           </a>
           <a href="/features" class="btn btn-ghost" data-link>

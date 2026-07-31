@@ -97,7 +97,7 @@ function renderNavbar() {
         <a href="/faq"      class="nav-link" data-link>FAQ</a>
         <a href="/support"  class="nav-link" data-link>Support</a>
       </div>
-      <a href="https://discord.gg/area69" target="_blank" rel="noreferrer" class="nav-cta">
+      <a href="https://discord.gg/5JubVrSrsB" target="_blank" rel="noreferrer" class="nav-cta">
         <i class="bi bi-discord"></i> Join Discord
       </a>
       <button class="hamburger" id="mobile-menu-btn" aria-label="Toggle menu">
@@ -110,7 +110,7 @@ function renderNavbar() {
       <a href="/staff"    class="nav-link" data-link>Staff</a>
       <a href="/faq"      class="nav-link" data-link>FAQ</a>
       <a href="/support"  class="nav-link" data-link>Support</a>
-      <a href="https://discord.gg/2GZ84WyFJp" target="_blank" rel="noreferrer" class="mobile-cta">
+      <a href="https://discord.gg/5JubVrSrsB" target="_blank" rel="noreferrer" class="mobile-cta">
         <i class="bi bi-discord"></i> Join Discord
       </a>
     </div>
@@ -265,9 +265,9 @@ function renderFeatures(container) {
 // Discord-accurate status SVGs
 function statusSVG(status) {
   const s = {
-    online:  `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#23a559"/></svg>`,
-    idle:    `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#f0b232"/><circle cx="10" cy="5" r="5" fill="#111318"/></svg>`,
-    dnd:     `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#f23f43"/><rect x="3" y="6.5" width="10" height="3" rx="1.5" fill="#111318"/></svg>`,
+    online: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#23a559"/></svg>`,
+    idle: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#f0b232"/><circle cx="10" cy="5" r="5" fill="#111318"/></svg>`,
+    dnd: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#f23f43"/><rect x="3" y="6.5" width="10" height="3" rx="1.5" fill="#111318"/></svg>`,
     offline: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#80848e"/><circle cx="8" cy="8" r="4" fill="#111318"/></svg>`,
   };
   return s[status] || s.offline;
@@ -319,7 +319,7 @@ function renderActivityBlock(act, customStatus) {
         ${act.image ? `<img src="${act.image}" class="act-app-icon" alt="" loading="lazy">` : ''}
         <div class="act-name">${act.name}</div>
         ${act.details ? `<div class="act-detail">${act.details}</div>` : ''}
-        ${act.state  ? `<div class="act-detail">${act.state}</div>` : ''}
+        ${act.state ? `<div class="act-detail">${act.state}</div>` : ''}
       </div>`);
   }
 
@@ -353,7 +353,7 @@ async function renderStaff(container) {
 
   try {
     const rawStaff = await ApiService.getStaff();
-    const grid  = container.querySelector('#staff-grid');
+    const grid = container.querySelector('#staff-grid');
 
     const ROLE_MAP = {
       "1476496400198926366": "Appeal Mod",
